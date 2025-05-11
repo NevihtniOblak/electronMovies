@@ -15,7 +15,7 @@ A starter template for building cross-platform desktop apps with Electron, React
 **1️⃣ Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/your-repo.git <project-name>
+git clone https://github.com/3-letnik-ICR/electron-react-starter-template.git <project-name>
 cd <project-name>
 ```
 
@@ -43,13 +43,3 @@ npm start
 ```
 
 Creates optimized build in /dist and launches production Electron app
-
-📂 Project Structure
-├── renderer/ # React application
-│ ├── src/ # React components
-│ ├── public/ # Static assets
-│ ├── index.html # Main HTML template
-│ └── vite.config.js # Vite configuration
-├── main.js # Electron main process
-├── package.json # Root project config
-└── README.md # You are here!
