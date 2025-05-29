@@ -1,8 +1,9 @@
 import { useState } from "react";
 import TopBar from "../TopBar/TopBar";
-import classes from "./MainPage.module.scss";
 import Movie from "./components/Movie";
 import MovieCard from "./components/MovieCard/MovieCard";
+import SelectedMovie from "./components/SelectedMovie/SelectedMovie";
+import classes from "./MainPage.module.scss";
 
 function MainPage() {
     const [movies] = useState<Movie[]>([
@@ -57,14 +58,15 @@ function MainPage() {
             "images/tm.jpg"
         ),
     ]);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
     return (
         <div className={classes.container}>
             <TopBar />
-            <div className={classes.selectedMovie}>{/* This will eventually show details of a selected movie */}</div>
+            <div className={classes.selectedMovie}>{selectedMovie && <SelectedMovie movie={selectedMovie} />}</div>
             <div className={classes.movieList}>
                 {movies.map((movie, index) => (
-                    <MovieCard key={index} movie={movie} />
+                    <MovieCard key={index} movie={movie} onClick={() => setSelectedMovie(movie)} />
                 ))}
             </div>
         </div>

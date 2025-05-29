@@ -10,10 +10,9 @@
 .selectedMovie {
     flex: 1;
     width: 100%;
+    height: fit-content;
     padding: 16px;
     overflow-y: auto;
-    border-bottom: 2px solid #333;
-    color: white;
 }
 
 .movieList {

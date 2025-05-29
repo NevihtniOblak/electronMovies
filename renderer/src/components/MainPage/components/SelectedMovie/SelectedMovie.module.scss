@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    height: 100%;
+    padding: 16px;
+    gap: 16px;
+    background-color: transparent;
+
+    color: white; //
+}
+
+.image {
+    height: 100%;
+    width: auto;
+    max-width: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-family: "Inter", sans-serif;
+
+    color: white; //
+}
+
+.upper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.year {
+    font-size: 11px;
+    margin: 0;
+    color: #ccc; //
+}
+
+.genres {
+    font-size: 12px;
+    margin: 0;
+}
+
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ratingIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.rating {
+    font-size: 14px;
+    margin: 0;
+    color: gold;
+}
+
+.lower {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.actors {
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.description {
+    font-size: 10px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.bookmarkButton {
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    align-self: flex-start;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.bookmarkButton:hover {
+    transform: scale(1.1);
+}
