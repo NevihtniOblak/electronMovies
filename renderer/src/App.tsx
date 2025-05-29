@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import MainPage from "./components/MainPage";
-import SettingsModal from "./components/SettingsModal";
+import MainPage from "./components/MainPage/MainPage";
+import SettingsModal from "./components/SettingsModal/SettingsModal";
 
 function App() {
     return (

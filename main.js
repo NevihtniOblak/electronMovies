@@ -16,7 +16,7 @@ const createWindow = () => {
         },
     });
 
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     if (process.env.NODE_ENV === "development") {
         mainWindow.loadURL("http://localhost:3000");
