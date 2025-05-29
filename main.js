@@ -1,33 +1,36 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 
-let mainWindow; // <-- Declare the main window
-let settingsWindow; // <-- Declare the settings window
+let mainWindow;
+let settingsWindow;
+let currentTheme = "light"; // Default theme
 
 const createWindow = () => {
     const preloadPath = path.join(__dirname, "preload.js");
-    console.log("Preload path:", preloadPath);
 
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
             preload: preloadPath,
+            contextIsolation: true,
         },
     });
-
-    //mainWindow.webContents.openDevTools();
 
     if (process.env.NODE_ENV === "development") {
         mainWindow.loadURL("http://localhost:3000");
     } else {
         mainWindow.loadFile("dist/index.html");
     }
+
+    // Once main window is ready, send the current theme
+    mainWindow.webContents.on("did-finish-load", () => {
+        mainWindow.webContents.send("theme-changed", currentTheme);
+    });
 };
 
 function createSettingsWindow() {
-    console.log("Creating settings window...");
-    if (settingsWindow) return; // Prevent multiple modals
+    if (settingsWindow) return;
 
     settingsWindow = new BrowserWindow({
         width: 400,
@@ -50,7 +53,12 @@ function createSettingsWindow() {
 
     settingsWindow.loadURL(url);
 
-    settingsWindow.once("ready-to-show", () => settingsWindow.show());
+    settingsWindow.once("ready-to-show", () => {
+        settingsWindow.show();
+
+        // Send the current theme when settings window is ready
+        settingsWindow.webContents.send("theme-changed", currentTheme);
+    });
 
     settingsWindow.on("closed", () => {
         settingsWindow = null;
@@ -74,6 +82,16 @@ app.on("window-all-closed", () => {
 });
 
 ipcMain.on("open-settings", () => {
-    console.log("Received request to open settings window");
     createSettingsWindow();
+});
+
+ipcMain.on("set-theme", (event, theme) => {
+    console.log("Theme set to", theme);
+
+    currentTheme = theme; // Update the theme variable
+
+    // Broadcast to all windows
+    BrowserWindow.getAllWindows().forEach((win) => {
+        win.webContents.send("theme-changed", currentTheme);
+    });
 });

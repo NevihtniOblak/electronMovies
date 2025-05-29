@@ -3,7 +3,9 @@ import TopBar from "../TopBar/TopBar";
 import Movie from "./components/Movie";
 import MovieCard from "./components/MovieCard/MovieCard";
 import SelectedMovie from "./components/SelectedMovie/SelectedMovie";
-import classes from "./MainPage.module.scss";
+import { useThemeStore } from "../../zustand/useThemeStore";
+import classesDark from "./MainPageDark.module.scss";
+import classesLight from "./MainPageLight.module.scss";
 
 function MainPage() {
     const [movies] = useState<Movie[]>([
@@ -58,7 +60,10 @@ function MainPage() {
             "images/tm.jpg"
         ),
     ]);
+
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const theme = useThemeStore((state) => state.theme);
+    const classes = theme === "dark" ? classesDark : classesLight;
 
     return (
         <div className={classes.container}>

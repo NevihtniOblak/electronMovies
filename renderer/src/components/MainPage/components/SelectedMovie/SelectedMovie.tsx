@@ -1,12 +1,18 @@
 import Movie from "../Movie";
 import { useState } from "react";
-import classes from "./SelectedMovie.module.scss";
+import { useThemeStore } from "../../../../zustand/useThemeStore";
+import classesDark from "./SelectedMovieDark.module.scss";
+import classesLight from "./SelectedMovieLight.module.scss";
 
 type Props = {
     movie: Movie;
 };
 
 function SelectedMovie({ movie }: Props) {
+    const theme = useThemeStore((state) => state.theme);
+    const classes = theme === "dark" ? classesDark : classesLight;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isBookmarked, setIsBookmarked] = useState<boolean>(movie.isBookmarked);
 
     return (
