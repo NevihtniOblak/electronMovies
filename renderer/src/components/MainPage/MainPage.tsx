@@ -8,7 +8,7 @@ import classesDark from "./MainPageDark.module.scss";
 import classesLight from "./MainPageLight.module.scss";
 
 function MainPage() {
-    const [movies] = useState<Movie[]>([
+    const [movies, setMovies] = useState<Movie[]>([
         new Movie(
             "Angry Birds",
             2016,
@@ -61,13 +61,17 @@ function MainPage() {
         ),
     ]);
 
+    const addMovie = (newMovie: Movie) => {
+        setMovies((prev) => [...prev, newMovie]);
+    };
+
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
     const theme = useThemeStore((state) => state.theme);
     const classes = theme === "dark" ? classesDark : classesLight;
 
     return (
         <div className={classes.container}>
-            <TopBar />
+            <TopBar onLoadMovie={addMovie} />
             <div className={classes.selectedMovie}>{selectedMovie && <SelectedMovie movie={selectedMovie} />}</div>
             <div className={classes.movieList}>
                 {movies.map((movie, index) => (

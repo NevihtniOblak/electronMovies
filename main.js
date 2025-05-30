@@ -15,6 +15,7 @@ const createWindow = () => {
             preload: preloadPath,
             contextIsolation: true,
         },
+        autoHideMenuBar: true,
     });
 
     if (process.env.NODE_ENV === "development") {
@@ -44,6 +45,7 @@ function createSettingsWindow() {
             preload: path.join(__dirname, "preload.js"),
             contextIsolation: true,
         },
+        autoHideMenuBar: true,
     });
 
     const url =
