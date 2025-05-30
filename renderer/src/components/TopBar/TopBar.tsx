@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useThemeStore } from "../../zustand/useThemeStore";
-import Movie from "../MainPage/components/Movie";
+import Movie from "../../models/Movie";
 import classesDark from "./TopBarDark.module.scss";
 import classesLight from "./TopBarLight.module.scss";
 

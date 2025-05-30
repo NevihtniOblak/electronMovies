@@ -1,4 +1,4 @@
-import Movie from "../Movie";
+import Movie from "../../../../models/Movie";
 import { useThemeStore } from "../../../../zustand/useThemeStore";
 import classesDark from "./MovieCardDark.module.scss";
 import classesLight from "./MovieCardLight.module.scss";

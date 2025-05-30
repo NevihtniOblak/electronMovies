@@ -11,12 +11,10 @@ function SettingsModal() {
         setSelectedTheme(theme);
     }, [theme]);
 
-    // Pick the styles based on the current theme in global state
     const activeClasses = theme === "dark" ? classesDark : classesLight;
 
     const saveSettings = () => {
         window.electronAPI.sendTheme(selectedTheme);
-        // TODO: send other settings as needed
     };
 
     return (
@@ -30,26 +28,12 @@ function SettingsModal() {
                         <select
                             id="theme-select"
                             className={activeClasses.dropdown}
-                            value={selectedTheme} // Use selectedTheme to reflect UI change
+                            value={selectedTheme}
                             onChange={(e) => setSelectedTheme(e.target.value as "light" | "dark")}
                         >
                             <option value="light">Light</option>
                             <option value="dark">Dark</option>
                         </select>
-                    </div>
-
-                    <div className={activeClasses.settingItem}>
-                        <label>
-                            <input type="checkbox" id="voice-commands" />
-                            Voice Commands
-                        </label>
-                    </div>
-
-                    <div className={activeClasses.settingItem}>
-                        <label>
-                            <input type="checkbox" id="auto-save" />
-                            Auto Save
-                        </label>
                     </div>
                 </div>
             </div>
@@ -57,10 +41,7 @@ function SettingsModal() {
                 <button className={activeClasses.saveButton} onClick={saveSettings}>
                     Save
                 </button>
-                <button
-                    className={activeClasses.cancelButton}
-                    /* onClick={() => window.electronAPI.closeSettings()} */
-                >
+                <button className={activeClasses.cancelButton} onClick={() => window.close()}>
                     Close
                 </button>
             </div>

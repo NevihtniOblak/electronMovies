@@ -85,15 +85,33 @@
     line-height: 1.4;
 }
 
-.bookmarkButton {
-    width: 24px;
-    height: 24px;
-    margin-top: 8px;
-    align-self: flex-start;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
+.buttons {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    .bookmarkButton {
+        width: 24px;
+        height: 24px;
+        margin-top: 8px;
+        align-self: flex-start;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
 
-.bookmarkButton:hover {
-    transform: scale(1.1);
+    .bookmarkButton:hover {
+        transform: scale(1.1);
+    }
+
+    .removeButton {
+        cursor: pointer;
+        width: 24px; // adjust size as needed
+        height: 24px;
+        transition: transform 0.2s ease-in-out;
+        top: 10px;
+        right: 10px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
 }

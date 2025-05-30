@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const fs = require("fs");
 
 let mainWindow;
 let settingsWindow;
@@ -12,7 +13,7 @@ const createWindow = () => {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: preloadPath,
+            preload: path.join(__dirname, "preload.js"),
             contextIsolation: true,
         },
         autoHideMenuBar: true,
@@ -96,4 +97,18 @@ ipcMain.on("set-theme", (event, theme) => {
     BrowserWindow.getAllWindows().forEach((win) => {
         win.webContents.send("theme-changed", currentTheme);
     });
+});
+
+ipcMain.handle("load-movies", () => {
+    const filePath = path.join(app.getPath("userData"), "movies.json");
+    if (fs.existsSync(filePath)) {
+        const raw = fs.readFileSync(filePath, "utf-8");
+        return JSON.parse(raw);
+    }
+    return [];
+});
+
+ipcMain.handle("save-movies", (_, movies) => {
+    const filePath = path.join(app.getPath("userData"), "movies.json");
+    fs.writeFileSync(filePath, JSON.stringify(movies, null, 2));
 });

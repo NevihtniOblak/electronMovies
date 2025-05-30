@@ -1,4 +1,4 @@
-import Movie from "../Movie";
+import Movie from "../../../../models/Movie";
 import { useState } from "react";
 import { useThemeStore } from "../../../../zustand/useThemeStore";
 import classesDark from "./SelectedMovieDark.module.scss";
@@ -6,9 +6,9 @@ import classesLight from "./SelectedMovieLight.module.scss";
 
 type Props = {
     movie: Movie;
+    onRemove: (movie: Movie) => void; // callback to remove movie
 };
-
-function SelectedMovie({ movie }: Props) {
+function SelectedMovie({ movie, onRemove }: Props) {
     const theme = useThemeStore((state) => state.theme);
     const classes = theme === "dark" ? classesDark : classesLight;
 
@@ -33,15 +33,33 @@ function SelectedMovie({ movie }: Props) {
                     <p className={classes.description}>{movie.description}</p>
                 </div>
             </div>
-            <img
-                src={movie.isBookmarked ? "images/BookmarkWhiteFilled.png" : "images/BookmarkWhite.png"}
-                className={classes.bookmarkButton}
-                alt="Bookmark"
-                onClick={() => {
-                    movie.isBookmarked = !movie.isBookmarked;
-                    setIsBookmarked(movie.isBookmarked);
-                }}
-            />
+            <div className={classes.buttons}>
+                <img
+                    src={
+                        movie.isBookmarked
+                            ? theme === "dark"
+                                ? "images/BookmarkWhiteFilled.png"
+                                : "images/BookmarkBlackFilled.png"
+                            : theme === "dark"
+                            ? "images/BookmarkWhite.png"
+                            : "images/BookmarkBlack.png"
+                    }
+                    className={classes.bookmarkButton}
+                    alt="Bookmark"
+                    onClick={() => {
+                        movie.isBookmarked = !movie.isBookmarked;
+                        setIsBookmarked(movie.isBookmarked);
+                    }}
+                />
+
+                <img
+                    src={theme === "dark" ? "images/eksWhite.png" : "images/eksBlack.png"}
+                    alt="Remove movie"
+                    className={classes.removeButton}
+                    onClick={() => onRemove(movie)}
+                    title="Remove movie"
+                />
+            </div>
         </div>
     );
 }
