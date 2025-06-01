@@ -1,5 +1,5 @@
-import Movie from "../../../../models/Movie";
 import { useState } from "react";
+import Movie from "../../../../models/Movie";
 import { useThemeStore } from "../../../../zustand/useThemeStore";
 import classesDark from "./SelectedMovieDark.module.scss";
 import classesLight from "./SelectedMovieLight.module.scss";
@@ -13,8 +13,7 @@ function SelectedMovie({ movie, onRemove, onToggleBookmark }: Props) {
     const theme = useThemeStore((state) => state.theme);
     const classes = theme === "dark" ? classesDark : classesLight;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [isBookmarked, setIsBookmarked] = useState<boolean>(movie.isBookmarked);
+    const [counter, setCounter] = useState(-1);
 
     return (
         <div className={classes.container}>
@@ -25,7 +24,7 @@ function SelectedMovie({ movie, onRemove, onToggleBookmark }: Props) {
                     <p className={classes.year}>{movie.year}</p>
                     <p className={classes.genres}>{movie.genres.join(", ")}</p>
                     <div className={classes.ratingContainer}>
-                        <img src="../public/images/star.png" alt="Rating Star" className={classes.ratingIcon} />
+                        <img src="images/star.png" alt="Rating Star" className={classes.ratingIcon} />
                         <p className={classes.rating}>{movie.rating}</p>
                     </div>
                 </div>
@@ -49,7 +48,7 @@ function SelectedMovie({ movie, onRemove, onToggleBookmark }: Props) {
                     alt="Bookmark"
                     onClick={() => {
                         onToggleBookmark(movie);
-                        setIsBookmarked(movie.isBookmarked);
+                        setCounter(counter * -1);
                     }}
                 />
 

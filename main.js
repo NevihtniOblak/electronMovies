@@ -1,12 +1,22 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+/*const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const Store = require("electron-store").default;
+const store = new Store();*/
+
+import { app, BrowserWindow, ipcMain } from "electron";
+import path from "path";
+import Store from "electron-store";
+import { fileURLToPath } from "url";
+
 const store = new Store();
 
 let mainWindow;
 let settingsWindow;
 let currentTheme = store.get("theme", "light");
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const defaultMovies = [
     {

@@ -51,7 +51,7 @@ function TopBar({ onLoadMovie }: TopBarProps) {
     return (
         <div className={classes.container}>
             <img
-                src={theme === "dark" ? "../images/movieIconBlack.png" : "../images/movieIconWhite.png"}
+                src={theme === "dark" ? "images/movieIconBlack.png" : "images/movieIconWhite.png"}
                 className={classes.logo}
                 alt="Logo"
             />
@@ -67,7 +67,7 @@ function TopBar({ onLoadMovie }: TopBarProps) {
                     onChange={handleFileChange}
                 />
                 <img
-                    src={theme === "dark" ? "../images/settingsBlack.png" : "../images/settingsWhite.png"}
+                    src={theme === "dark" ? "images/settingsBlack.png" : "images/settingsWhite.png"}
                     className={classes.settingsButton}
                     alt="Settings"
                     onClick={() => window.electronAPI.openSettings()}
