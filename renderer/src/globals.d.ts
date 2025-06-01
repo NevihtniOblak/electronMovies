@@ -1,4 +1,4 @@
-import MovieData from "./types/MovieData";
+import type { MovieData } from "./types/MovieData"; // Fix import if needed
 
 export {};
 
@@ -9,8 +9,8 @@ declare global {
             sendTheme: (theme: string) => void;
             onThemeChanged: (callback: (theme: string) => void) => void;
             removeThemeChangedListener: (callback: (theme: string) => void) => void;
-            loadMovies: () => Promise<MovieData[]>;
-            saveMovies: (movies: MovieData[]) => Promise<void>;
+            getMovies: () => Promise<MovieData[]>;
+            setMovies: (movies: MovieData[]) => void;
         };
     }
 }

@@ -23,6 +23,13 @@
     font-family: "Inter", sans-serif;
 
     color: black; //
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .upper {
@@ -33,7 +40,7 @@
 
 .title {
     font-size: 25px;
-    font-weight: 300;
+    font-weight: 500;
     margin: 0;
     font-family: "Roboto", sans-serif;
 }
@@ -62,6 +69,7 @@
 
 .rating {
     font-size: 14px;
+    font-weight: 500;
     margin: 0;
     color: gold;
 }

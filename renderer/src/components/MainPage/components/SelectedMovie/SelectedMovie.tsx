@@ -6,9 +6,10 @@ import classesLight from "./SelectedMovieLight.module.scss";
 
 type Props = {
     movie: Movie;
-    onRemove: (movie: Movie) => void; // callback to remove movie
+    onRemove: (movie: Movie) => void;
+    onToggleBookmark: (movie: Movie) => void;
 };
-function SelectedMovie({ movie, onRemove }: Props) {
+function SelectedMovie({ movie, onRemove, onToggleBookmark }: Props) {
     const theme = useThemeStore((state) => state.theme);
     const classes = theme === "dark" ? classesDark : classesLight;
 
@@ -47,7 +48,7 @@ function SelectedMovie({ movie, onRemove }: Props) {
                     className={classes.bookmarkButton}
                     alt="Bookmark"
                     onClick={() => {
-                        movie.isBookmarked = !movie.isBookmarked;
+                        onToggleBookmark(movie);
                         setIsBookmarked(movie.isBookmarked);
                     }}
                 />

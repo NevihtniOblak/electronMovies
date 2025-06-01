@@ -17,6 +17,6 @@ contextBridge.exposeInMainWorld("electronAPI", {
     removeThemeChangedListener: (callback) => {
         ipcRenderer.removeListener("theme-changed", callback);
     },
-    loadMovies: () => ipcRenderer.invoke("load-movies"),
-    saveMovies: (movies) => ipcRenderer.invoke("save-movies", movies),
+    getMovies: () => ipcRenderer.invoke("get-movies"),
+    setMovies: (movies) => ipcRenderer.send("set-movies", movies),
 });
